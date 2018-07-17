@@ -9,7 +9,10 @@ const Saludo = (props) => {
    	marginBottom: '10px'
    }
    return (
-		<h1 style={boxStyle}>Hola {props.name}, tienes {props.age}</h1>
+   	<div>
+			<h1 style={boxStyle}>Hola {props.name}, tienes {props.age}</h1>
+			<p>{props.children}</p>
+   	</div>
    ) 
 }
 export default Saludo;
