@@ -29,9 +29,22 @@ module.exports = {
    module: {
 		rules: [
 		   {
+		   	 enforce: 'pre',
 		       test: /\.(js|jsx)$/,
-		       loader: 'babel-loader',
-		       exclude: /node_modules/
+		       exclude: /node_modules/,
+		       use: [
+					{
+						loader: 'standard-loader',
+						options: {
+							parser: 'babel-eslint',
+							standard: 'standard',
+							snazzy: true
+						}
+					},
+					{
+						loader: 'babel-loader'
+					}
+		      ]
 		   },
 		   {
 				test: /(\.css|\.scss)$/,

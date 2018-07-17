@@ -29,19 +29,32 @@ module.exports = {
    module: {
 		rules: [
 		   {
+		   	 enforce: 'pre',
 		       test: /\.(js|jsx)$/,
-		       loader: 'babel-loader',
-		       exclude: /node_modules/
+		       exclude: /node_modules/,
+		       use: [
+					{
+						loader: 'standard-loader',
+						options: {
+							parser: 'babel-eslint',
+							standard: 'standard',
+							snazzy: true
+						}
+					},
+					{
+						loader: 'babel-loader'
+					}
+		      ]
 		   },
 		   {
 				test: /(\.css|\.scss)$/,
 				exclude: /node_modules/,
 				use: [
 				{
-					loader: 'style-loader', // inject CSS to page
+					loader: 'style-loader',
 				}, 
 				{
-					loader: 'css-loader', // translates CSS into CommonJS modules
+					loader: 'css-loader',
 					options: { 
 		     			importLoaders: 1,
 		     			minimize: true,
@@ -50,9 +63,9 @@ module.exports = {
 		     		}
 				}, 
 				{
-					loader: 'postcss-loader', // Run post css actions
+					loader: 'postcss-loader',
 					options: {
-					plugins: function () { // post css plugins, can be exported to postcss.config.js
+					plugins: function () {
 						return [
 							require('precss'),
 							require('autoprefixer')
@@ -61,7 +74,7 @@ module.exports = {
 				}
 				}, 
 				{
-					loader: 'sass-loader' // compiles Sass to CSS
+					loader: 'sass-loader'
 				},
 				{
 					loader: 'sass-resources-loader',
