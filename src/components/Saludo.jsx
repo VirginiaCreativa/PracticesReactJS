@@ -10,7 +10,7 @@ function Saludo(props) {
   };
   return (
     <div>
-      <h1 style={boxStyle}>Hola{props.name}, tienes{props.age}</h1>
+      <h1 style={boxStyle}>Hola {props.name}!, tienes {props.age} años</h1>
       <p>{props.children}</p>
     </div>
   );

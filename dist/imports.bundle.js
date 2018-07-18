@@ -138,7 +138,7 @@ eval("\n/**\n * When source maps are enabled, `style-loader` uses a link element
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _imports = __webpack_require__(/*! ../style/imports.scss */ \"./src/style/imports.scss\");\n\nvar _imports2 = _interopRequireDefault(_imports);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n//# sourceURL=webpack:///./src/scripts/imports.js?");
+eval("\n\n__webpack_require__(/*! ../style/imports.scss */ \"./src/style/imports.scss\");\n\n//# sourceURL=webpack:///./src/scripts/imports.js?");
 
 /***/ }),
 
