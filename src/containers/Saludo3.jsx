@@ -37,20 +37,10 @@ class SaludoContainers extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          <Saludo
-            name={this.state.personas[0].name}
-            age={this.state.personas[0].age}
-            changed={this.handleChangeName} />
-          <Saludo
-            name={this.state.personas[1].name}
-            age={this.state.personas[1].age}
-            changed={this.handleChangeName}>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam beatae reprehenderit fugiat dolorem, delectus explicabo iusto. Molestiae voluptatibus doloremque rerum cumque, quae expedita ipsa quidem impedit veritatis sequi laboriosam minus?
-          </Saludo>
-          <Saludo
-            name={this.state.personas[2].name}
-            age={this.state.personas[2].age}
-            changed={this.handleChangeName} />
+          {
+            // this.state.personas.map((person, key) => <Saludo key={person.id} name={person.name} age={person.age} />)
+            this.state.personas.map((person, index) => <Saludo {...person} key={index} />)
+          }
         </div>
       );
     }
