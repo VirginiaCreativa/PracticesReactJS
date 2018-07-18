@@ -6,7 +6,7 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 module.exports = {
   entry: {
-    index: './src/index.jsx',
+    index: './src/index.js',
     imports: './src/scripts/imports.js',
     another: './src/another-module.js'
   },
@@ -33,7 +33,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'eslint-loader',
         options: {
-          quiet: true
+          fix: true,
         }
       },
       {
