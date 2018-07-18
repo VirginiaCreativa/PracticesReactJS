@@ -39,10 +39,10 @@ class SaludoContainers extends Component {
 
   HandlerToggleShow = () => {
     const doesShow = this.state.showPersons;
-    const btnShow = this.state.showTextBtn;
+    const btnToggle = this.state.showTextBtn;
     this.setState({
       showPersons: !doesShow,
-      showTextBtn: !btnShow,
+      showTextBtn: !btnToggle,
     });
   }
 
