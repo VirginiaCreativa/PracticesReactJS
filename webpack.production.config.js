@@ -1,8 +1,7 @@
-const path = require('path')
-const webpack = require('webpack')
-const autoprefixer = require('autoprefixer')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -49,22 +48,10 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-		     			importLoaders: 1,
 		     			minimize: true,
-		     			modules: true,
-		            sourceMap: true
+              modules: true,
+		          sourceMap: true
 		     		}
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: function () {
-                return [
-                  require('precss'),
-                  require('autoprefixer')
-                ]
-              }
-            }
           },
           {
             loader: 'sass-loader'

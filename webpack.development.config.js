@@ -1,8 +1,7 @@
-const path = require('path')
+const path = require('path');
 const webpack = require('webpack')
-const autoprefixer = require('autoprefixer')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -23,7 +22,7 @@ module.exports = {
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
-  		compress: true,
+  	compress: true,
     port: 3000
   },
   module: {
@@ -49,22 +48,10 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-		     			importLoaders: 1,
 		     			minimize: true,
-		     			modules: true,
-		            sourceMap: true
+              modules: true,
+		          sourceMap: true
 		     		}
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: function () {
-                return [
-                  require('precss'),
-                  require('autoprefixer')
-                ]
-              }
-            }
           },
           {
             loader: 'sass-loader'
@@ -93,29 +80,29 @@ module.exports = {
   },
   plugins: [
     new webpack.LoaderOptionsPlugin({ options: {} }),
-	  	new HtmlWebpackPlugin({
-	      template: __dirname + '/src/index.html',
-	      filename: 'index.html',
-	      inject: 'body',
-	      title: 'Practices ReactJS',
+  	new HtmlWebpackPlugin({
+      template: __dirname + '/src/index.html',
+      filename: 'index.html',
+      inject: 'body',
+      title: 'Practices ReactJS',
       minify: {
         collapseWhitespace: true
       }
-	  }),
-	  	new BrowserSyncPlugin({
-	      host: 'localhost',
-	      files: [
-        './**/*.html',
-        './*.html',
-        './**/*.js',
-        './*.js',
-        './**/*.scss',
-        './*.scss',
-        './**/*.css',
-        './*.css'
-      ],
-      port: 9000,
-      server: { baseDir: ['dist'] }
-	   })
+    }),
+  	new BrowserSyncPlugin({
+      host: 'localhost',
+      files: [
+      './**/*.html',
+      './*.html',
+      './**/*.js',
+      './*.js',
+      './**/*.scss',
+      './*.scss',
+      './**/*.css',
+      './*.css'
+    ],
+    port: 9000,
+    server: { baseDir: ['dist'] }
+   })
   ]
 }

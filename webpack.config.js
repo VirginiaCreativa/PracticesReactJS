@@ -1,6 +1,5 @@
 const path = require('path')
 const webpack = require('webpack')
-const autoprefixer = require('autoprefixer')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
@@ -51,22 +50,10 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-		     			importLoaders: 1,
 		     			minimize: true,
-		     			modules: true,
-		            sourceMap: true
+              modules: true,
+		          sourceMap: true
 		     		}
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: function () {
-                return [
-                  require('precss'),
-                  require('autoprefixer')
-                ]
-              }
-            }
           },
           {
             loader: 'sass-loader'
@@ -94,8 +81,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.LoaderOptionsPlugin({ options: {} }),
-	  	new HtmlWebpackPlugin({
+	  new HtmlWebpackPlugin({
 	      template: __dirname + '/src/index.html',
 	      filename: 'index.html',
 	      inject: 'body',
@@ -104,7 +90,7 @@ module.exports = {
         collapseWhitespace: true
       }
 	  }),
-	  	new BrowserSyncPlugin({
+	  new BrowserSyncPlugin({
 	      host: 'localhost',
 	      files: [
         './**/*.html',
@@ -118,6 +104,6 @@ module.exports = {
       ],
       port: 9000,
       server: { baseDir: ['dist'] }
-	   })
+	  })
   ]
 }
