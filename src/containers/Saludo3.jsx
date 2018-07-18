@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Saludo from '../components/Saludo';
+import Saludo from '../components/Saludo3';
 
 class SaludoContainers extends Component {
   state = {
@@ -12,16 +12,6 @@ class SaludoContainers extends Component {
     showTextBtn: true,
   };
 
-  handleChangeName = (ev) => {
-    this.setState({
-      personas: [
-        { name: 'Isabella', age: 5 },
-        { name: ev.target.value, age: 2 },
-        { name: 'Bebe', age: 0 },
-      ],
-    });
-  }
-
   HandlerToggleShow = () => {
     const doesShow = this.state.showPersons;
     const btnToggle = this.state.showTextBtn;
@@ -29,6 +19,12 @@ class SaludoContainers extends Component {
       showPersons: !doesShow,
       showTextBtn: !btnToggle,
     });
+  }
+
+  deletePersonHandle = (personIndex) => {
+    const persons = this.state.personas;
+    persons.splice(personIndex, 1);
+    this.setState({ personas: persons });
   }
 
   render() {
@@ -39,7 +35,7 @@ class SaludoContainers extends Component {
         <div>
           {
             // this.state.personas.map((person, key) => <Saludo key={person.id} name={person.name} age={person.age} />)
-            this.state.personas.map((person, index) => <Saludo {...person} key={index} />)
+            this.state.personas.map((person, index) => <Saludo {...person} key={index} click={() => this.deletePersonHandle(index)} />)
           }
         </div>
       );
