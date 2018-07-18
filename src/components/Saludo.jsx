@@ -10,8 +10,11 @@ function Saludo(props) {
   };
   return (
     <div>
-      <h1 style={boxStyle}>Hola {props.name}!, tienes {props.age} años</h1>
-      <p>{props.children}</p>
+      <div className='box' style={boxStyle}>
+        <h1 >Hola {props.name}!, tienes {props.age} años</h1>
+        <p>{props.children}</p>
+        <input type="text" onChange={props.changed} value={props.name} />
+      </div>
     </div>
   );
 }
