@@ -1,1 +1,1 @@
-import files from './../style/imports.scss'
+import basesFiles from '../style/imports.scss'
