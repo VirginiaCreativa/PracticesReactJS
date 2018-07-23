@@ -1,7 +1,7 @@
-import React from 'react';
-import './Saludo.scss';
+import React from 'react'
+import './Saludo.scss'
 
-function Saludo(props) {
+function Saludo (props) {
   return (
     <div>
       <div className='Saludo'>
@@ -10,6 +10,6 @@ function Saludo(props) {
         <button onClick={props.click}>Eliminar</button>
       </div>
     </div>
-  );
+  )
 }
-export default Saludo;
+export default Saludo

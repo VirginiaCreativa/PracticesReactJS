@@ -1,7 +1,7 @@
-const path = require('path');
+const path = require('path')
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -27,18 +27,22 @@ module.exports = {
   },
   module: {
     rules: [
-		   {
-        enforce: 'pre',
+      {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'eslint-loader',
+        include: path.resolve(process.cwd(), 'src'),
+        enforce: 'pre',
+        options: {
+          fix: true,
+        },
       },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
       },
-		   {
+		  {
         test: /(\.css|\.scss)$/,
         exclude: /node_modules/,
         use: [
@@ -49,9 +53,15 @@ module.exports = {
             loader: 'css-loader',
             options: {
 		     			minimize: true,
-              modules: true,
 		          sourceMap: true
 		     		}
+          },
+          {
+            test: /\.useable\.css$/,
+            use: [
+              { loader: 'style-loader/useable' },
+              { loader: 'css-loader' }
+            ]
           },
           {
             loader: 'sass-loader'
@@ -59,18 +69,23 @@ module.exports = {
           {
             loader: 'sass-resources-loader',
 		          options: {
-		            resources: ['./src/style/_variables.scss', './src/style/global.scss']
+		            resources: [
+                './src/style/_variables.scss',
+                './src/style/global.scss',
+                './src/components/*.scss',
+                './src/containers/*.scss'
+              ]
             }
 		     	}
         ]
       },
-		   {
-		       test: /\.(png|svg|jpe?g|gif|ico)$/,
-		       loader: 'url-loader?limit=8000&name=images/[name].[ext]'
-		   },
-		   {
-		      test: /[\/\\]node_modules[\/\\]some-module[\/\\]index\.js$/,
-		      loader: 'imports-loader?this=>window'
+		  {
+        test: /\.(png|svg|jpe?g|gif|ico)$/,
+        loader: 'url-loader?limit=8000&name=images/[name].[ext]'
+		  },
+		  {
+        test: /[\/\\]node_modules[\/\\]some-module[\/\\]index\.js$/,
+        loader: 'imports-loader?this=>window'
       },
       {
         test: /\.(jpe?g|png|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
@@ -92,17 +107,17 @@ module.exports = {
   	new BrowserSyncPlugin({
       host: 'localhost',
       files: [
-      './**/*.html',
-      './*.html',
-      './**/*.js',
-      './*.js',
-      './**/*.scss',
-      './*.scss',
-      './**/*.css',
-      './*.css'
-    ],
-    port: 9000,
-    server: { baseDir: ['dist'] }
-   })
+        './**/*.html',
+        './*.html',
+        './**/*.js',
+        './*.js',
+        './**/*.scss',
+        './*.scss',
+        './**/*.css',
+        './*.css'
+      ],
+      port: 9000,
+      server: { baseDir: ['dist'] }
+    })
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "extends": ["standard-react", "airbnb-base", "plugin:react/recommended"],
+  "extends": ["standard-react", "airbnb-base", "eslint:recommended", "plugin:react/recommended"],
   "plugins": [
     "jsx-a11y",
     "react",
@@ -27,6 +27,7 @@
     "no-tabs": 0,
     "no-unused-vars": 0,
     "max-len": 0,
+    "react/jsx-indent": [2, "tab"],
     "class-methods-use-this": ["error", {
       "exceptMethods": [
         "render",
