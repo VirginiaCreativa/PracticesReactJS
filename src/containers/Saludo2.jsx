@@ -36,30 +36,19 @@ class SaludoContainers extends Component {
 
     if (this.state.showPersons) {
       persons = (
-        <div>
-          <Saludo
-            name={this.state.personas[0].name}
-            age={this.state.personas[0].age}
-            changed={this.handleChangeName} />
-          <Saludo
-            name={this.state.personas[1].name}
-            age={this.state.personas[1].age}
-            changed={this.handleChangeName}>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam beatae reprehenderit fugiat dolorem, delectus explicabo iusto. Molestiae voluptatibus doloremque rerum cumque, quae expedita ipsa quidem impedit veritatis sequi laboriosam minus?
-          </Saludo>
-          <Saludo
-            name={this.state.personas[2].name}
-            age={this.state.personas[2].age}
-            changed={this.handleChangeName} />
-        </div>
+	      <div>
+		      <Saludo name={this.state.personas[0].name} age={this.state.personas[0].age} changed={this.handleChangeName} />
+		      <Saludo name={this.state.personas[1].name} age={this.state.personas[1].age} changed={this.handleChangeName}> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam beatae reprehenderit fugiat dolorem, delectus explicabo iusto. Molestiae voluptatibus doloremque rerum cumque, quae expedita ipsa quidem impedit veritatis sequi laboriosam minus?</Saludo>
+		      <Saludo name={this.state.personas[2].name} age={this.state.personas[2].age} changed={this.handleChangeName} />
+	      </div>
       );
     }
 
     return (
-      <div>
-        <button onClick={this.HandlerToggleShow}>{this.state.showTextBtn === true ? 'Show Persons' : 'Hide Persons'}</button>
-        {persons}
-      </div>
+	<div>
+		<button onClick={this.HandlerToggleShow}>{this.state.showTextBtn === true ? 'Show Persons' : 'Hide Persons'}</button>
+		{persons}
+	</div>
     );
   }
 }

@@ -16,6 +16,9 @@ class CharacterApp extends Component {
 		const updateBox = box.join('');
 		this.setState({userIntup: updateBox});
 	}
+	componentDidMount() {
+		setTimeout(() => { return this.deleteCharHandler;}, 3000);
+	}
 	render() {
 		let charList = this.state.userIntup.split('').map((ch, index) => {
 			return <Char key={index} character={ch} clicked={() => this.deleteCharHandler(index)} />;

@@ -1,7 +1,15 @@
-.Saludo {
-	border: 4px solid #3c83ff;
-	padding: 20px;
-	color: #fff;
-	background-color: #273971;
-	margin-bottom: 10px;
+:local {
+	.Saludo {
+		border: 4px solid #3c83ff;
+		padding: 20px;
+		color: #fff;
+		background-color: #273971;
+		margin-bottom: 10px;
+		opacity: 1;
+	}
+	.btnRed {
+		color: #fff;
+		background-color: #C0382B;
+		font-weight: 700;
+	}
 }

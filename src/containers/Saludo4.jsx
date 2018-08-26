@@ -39,27 +39,24 @@ class SaludoContainers extends Component {
 
   render() {
     let persons = null;
-
+    
     if (this.state.showPersons) {
-      persons = (
-        <div>
-          {
-            this.state.personas.map((person, index) => <Saludo
-              {...person}
-              key={person.id}
-              click={() => this.deletePersonHandle(index)}
-              changed={ev => this.ChangeNameHandle(ev, person.id)}
-              />)
-          }
-        </div>
+      persons = (<div> { this.state.personas.map((person, index) => <Saludo {...person} key={person.id} click={() => this.deletePersonHandle(index)} changed={(ev) => this.ChangeNameHandle(ev, person.id)} />) }</div>
       );
     }
 
+
     return (
-      <div>
-        <button onClick={this.HandlerToggleShow}>{this.state.showTextBtn === true ? 'Show Persons' : 'Hide Persons'}</button>
-        {persons}
-      </div>
+	<div>
+		<div className="container">
+			<div className="row">
+				<h4>This is really working</h4>
+				<button onClick={this.HandlerToggleShow}>{this.state.showTextBtn === true ? 'Show Persons' : 'Hide Persons'}</button>
+				{persons}
+
+			</div>
+		</div>
+	</div>
     );
   }
 }

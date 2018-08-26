@@ -1,9 +1,9 @@
 {
-  "extends": ["standard-react", "airbnb-base", "eslint:recommended", "plugin:react/recommended"],
+  "extends": ["standard", "standard-react", "airbnb-base", "eslint:recommended", "plugin:react/recommended"],
   "plugins": [
     "jsx-a11y",
     "react",
-    "babel",
+    "babel"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -39,10 +39,10 @@
         "shouldComponentUpdate",
         "componentWillUpdate",
         "componentDidUpdate",
-        "componentWillUnmount",
+        "componentWillUnmount"
       ]
     }],
-    "react/display-name": ["off", { "ignoreTranspilerName": false }],
+    "react/display-name": ["off", { "ignoreTranspilerName": false }]
   },
   "settings": {
     "react": {

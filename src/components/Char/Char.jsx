@@ -1,8 +1,7 @@
-
 import React from 'react';
 
 const Char = (props) => {
-	const boxStyle = {
+	let boxStyle = {
 		display   : 'inline-block',
 		margin    : '10px',
 		padding   : '20px',

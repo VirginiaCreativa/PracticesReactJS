@@ -2,8 +2,13 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+const autoprefixer = require('autoprefixer');
+const precss = require('precss');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
+  mode: 'development',
   entry: {
     index: './src/index.js',
     imports: './src/scripts/imports.js',
@@ -14,14 +19,15 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['', '.js', '.css', '.scss'],
     alias: {
-      jquery: 'jquery/src/jquery'
-    }
+      jquery: 'jquery/src/jquery',
+    },
+    modules: ['node_modules', 'src'],
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
-  		compress: true,
+    compress: true,
     port: 3000
   },
   module: {
@@ -39,37 +45,55 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: ['babel-loader', 'eslint-loader']
       },
       {
-        test: /(\.css|\.scss)$/,
-        exclude: /node_modules/,
+      test: /\.scss$/,
+      exclude: /node_modules/,
+      use: devMode ? ExtractTextPlugin.extract({
+        fallback: 'style-loader?sourceMap',
         use: [
-          {
-            loader: 'style-loader'
-          },
           {
             loader: 'css-loader',
             options: {
-              minimize: true,
               modules: true,
-              sourceMap: true
+              sourceMap: true,
+              importLoaders: 2,
+              minimize: true,
+              localIdentName: '[name]_[local]_[hash:base64:5]',
+              minimize: {
+                discardComments: {
+                  removeAll: true
+                }
+              }
             }
-          },
+          }, 
           {
-            loader: 'sass-loader'
-          },
-          {
-            loader: 'sass-resources-loader',
+            loader: 'postcss-loader',
             options: {
-              resources: [
-                './src/style/_variables.scss',
-                './src/style/global.scss',
-                './src/components/*.scss',
-                './src/containers/*.scss'
+              sourceMap: true,
+              ident: 'postcss',
+              plugins: (loader) => [
+                require('precss'),
+                require('autoprefixer')()
               ]
             }
-          }
+          },
+          'sass-loader?sourceMap',
+          {
+              loader: 'sass-resources-loader',
+                options: {
+                  resources: [
+                  './src/style/_variables.scss',
+                  './src/style/_global.scss'
+                ]
+              }
+            }
+        ]
+        }) : [
+          'style-loader?sourceMap',
+          'css-loader?sourceMap',
+          'sass-loader?sourceMap'
         ]
       },
       {
@@ -87,18 +111,22 @@ module.exports = {
     ]
   },
   plugins: [
-	  new HtmlWebpackPlugin({
-	      template: __dirname + '/src/index.html',
-	      filename: 'index.html',
-	      inject: 'body',
-	      title: 'Practices ReactJS',
+    new ExtractTextPlugin({
+      filename: 'styles.css',
+      allChunks: true
+    }),
+    new HtmlWebpackPlugin({
+      template: __dirname + '/src/index.html',
+      filename: 'index.html',
+      inject: 'body',
+      title: 'Practices ReactJS',
       minify: {
         collapseWhitespace: true
       }
-	  }),
-	  new BrowserSyncPlugin({
-	      host: 'localhost',
-	      files: [
+    }),
+    new BrowserSyncPlugin({
+      host: 'localhost',
+      files: [
         './**/*.html',
         './*.html',
         './**/*.js',
@@ -110,6 +138,12 @@ module.exports = {
       ],
       port: 9000,
       server: { baseDir: ['dist'] }
-	  })
+    }),
+    new webpack.ProvidePlugin({
+      'window.jQuery': 'jquery',
+      'window.$': 'jquery',
+      'jQuery': 'jquery',
+      '$': 'jquery'
+    })
   ]
 }
